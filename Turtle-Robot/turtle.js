@@ -1,5 +1,5 @@
 
-//DOCUMENTATION: https://hanumanum.github.io/js-turtle/
+
 /*
 showGrid(20);      
 forward(distance)  

@@ -1,6 +1,3 @@
-//See Initial version here: http://berniepope.id.au/html/js-turtle/turtle.html
-//This is adapted version for TUMO
-
 (function() {
 
 var turtle = undefined;
@@ -28,6 +25,7 @@ function processQueue() {
 
     setTimeout(() => {
         const xhr = new XMLHttpRequest();
+        // change it based on local ip
         xhr.open("GET", "http://192.168.1.29:80/action?go=" + currentRequest);
         xhr.send();
         xhr.responseType = "json";
