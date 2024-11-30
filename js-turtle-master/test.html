@@ -1,0 +1,112 @@
+
+<html>
+   <head>
+      <title>JavaScript Turtle Graphics</title>
+      <meta charset="utf-8">
+      <style>
+         /* Bố cục Flexbox cho giao diện */
+         body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+         }
+
+         /* Phần bên trái chứa textarea và nút */
+         #left-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+         }
+
+         /* Phần nút "Run Code" */
+         #controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+         }
+
+         /* Textarea để nhập mã */
+         #definitions {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            background-color: #2b2b2b;
+            color: #fff;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: none;
+         }
+
+         /* Phần bên phải chứa canvas */
+         #right-side {
+            flex: 1;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+         }
+
+         /* Canvas tùy chỉnh */
+         #turtlecanvas {
+            width: 100%;
+            height: 100%;
+            max-width: 700px;
+            max-height: 700px;
+            border: 1px solid red;
+         }
+
+         /* Nút "Run Code" và "Reset" */
+         button {
+            padding: 5px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+         }
+
+         button:hover {
+            background-color: #45a049;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Phần bên trái: Textarea và nút "Run Code" -->
+      <div id="left-side">
+         <div id="controls">
+            <h2>Definitions</h2>
+            <button onclick="runIt()">Run Code</button>
+         </div>
+         <textarea id="definitions">// Nhập mã của bạn ở đây</textarea>
+      </div>
+
+      <!-- Phần bên phải: Canvas -->
+      <div id="right-side">
+            <canvas id="turtlecanvas" width="700" height="700" ></canvas>
+            <canvas id="imagecanvas" width="700" height="700" style="display:none"></canvas>
+
+      </div>
+
+      <!-- Nhúng các file JavaScript -->
+      <script type="text/javascript" src="http://127.0.0.1:5500/lib/library.js"></script>
+      <script type="text/javascript" src="http://127.0.0.1:5500/functions.js"></script>
+      <script type="text/javascript" src="http://127.0.0.1:5500/turtle.js"></script>
+
+      <script>
+         function runIt() {
+            // Lấy mã từ textarea
+            const code = document.getElementById('definitions').value;
+            try {
+               eval(code); // Chạy mã nhập vào
+            } catch (error) {
+               alert("Lỗi: " + error.message);
+            }
+         }
+      </script>
+   </body>
+</html>
