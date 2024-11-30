@@ -1,3 +1,9 @@
+/*
+  When I'm writing this code, only I and God know what it does. Now, only God knows.
+                                                                  -- Hieu --
+*/
+
+
 // Zone library
 #include <WiFi.h>
 #include <Stepper.h>
