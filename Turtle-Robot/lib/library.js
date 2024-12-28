@@ -164,7 +164,26 @@
             drawIf();
         }
     }
+
+    window.circleR = function(radius, phi, step = false) {
+        if (stepByStep && !step) {
+            steps.push(["circleR", distance]);
+        }
+        else {
+            toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
+        }
+    }
     
+
+    window.circleL = function(radius, phi, step = false) {
+        if (stepByStep && !step) {
+            steps.push(["circleL", distance]);
+        }
+        else {
+            toggleCheckbox("circleL" + "(" + radius.toString() + ";" + phi.toString() + ")");
+        }
+    }
+
     window.color = function(sr, sg, sb, step = false) {
         var r,g,b;
         if (Array.isArray(sr)) {
