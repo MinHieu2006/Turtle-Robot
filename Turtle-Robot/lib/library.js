@@ -25,7 +25,7 @@
     
         setTimeout(() => {
             const xhr = new XMLHttpRequest();
-            const inputValue = document.getElementById('input-box').value;
+            const inputValue = window.location.href
             // change it based on local ip
             console.log(inputValue + "/action?go=" + currentRequest);
             xhr.open("GET", inputValue + "/action?go=" + currentRequest);
