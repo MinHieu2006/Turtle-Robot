@@ -26,6 +26,7 @@
         setTimeout(() => {
             const xhr = new XMLHttpRequest();
             const inputValue = window.location.href
+            if(inputValue.charAt(inputValue.length - 1) == "/") inputValue = inputValue.slice(0, -1);
             // change it based on local ip
             console.log(inputValue + "/action?go=" + currentRequest);
             xhr.open("GET", inputValue + "/action?go=" + currentRequest);
