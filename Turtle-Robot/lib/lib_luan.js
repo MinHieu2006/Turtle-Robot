@@ -171,7 +171,7 @@
             steps.push(["circleR", distance]);
         }
         else {
-            toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
+            toggleCheckbox("circleR" + "(" + radius.toString() + "," + phi.toString() + ")");
         }
     }
     
@@ -181,7 +181,7 @@
             steps.push(["circleL", distance]);
         }
         else {
-            toggleCheckbox("circleL" + "(" + radius.toString() + ";" + phi.toString() + ")");
+            toggleCheckbox("circleL" + "(" + radius.toString() + "," + phi.toString() + ")");
         }
     }
 
