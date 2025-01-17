@@ -252,11 +252,11 @@ window.backward = function(distance, step = false) {
         else {
             toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
             while(phi>0){
-                turtle.penup();
+                turtle.penDown = 0;
                 turtle.forward(radius-1);                
-                turtle.pendown();
+                turtle.penDown = 1;
                 turtle.forward(1);
-                turtle.penup();
+                turtle.penDown = 0;
                 turtle.backward(radius);
                 turtle.right(1);
                 phi--;
