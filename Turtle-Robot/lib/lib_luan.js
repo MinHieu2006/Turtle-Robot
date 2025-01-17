@@ -247,7 +247,7 @@ window.backward = function(distance, step = false) {
         }
         else {
             isSend = false;
-            toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
+            toggleCheckbox("circleR" + "(" + radius.toString() + "," + phi.toString() + ")");
             for (var i = 0; i<phi; i++){
               forward((radius*PI)/180);
               right(1);
@@ -262,7 +262,13 @@ window.backward = function(distance, step = false) {
             steps.push(["circleL", distance]);
         }
         else {
+            isSend = false;
             toggleCheckbox("circleL" + "(" + radius.toString() + "," + phi.toString() + ")");
+             for (var i = 0; i<phi; i++){
+              forward((radius*PI)/180);
+              left(1);
+            }
+            isSend = true;
         }
     }
 
