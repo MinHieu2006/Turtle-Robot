@@ -251,16 +251,6 @@ window.backward = function(distance, step = false) {
         }
         else {
             toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
-            while(phi>0){
-                penup();
-                forward(radius-1);                
-                pendown();
-                forward(1);
-                pendown();
-                backward(radius);
-                right(1);
-                phi--;
-            }
         }
     }
     
