@@ -54,6 +54,12 @@
     
     
     /* ====================================  turtle API functions =====================================*/
+    function Conversion(centi)
+    {
+        var pixels = (96 * centi) / 2.54;
+        return parseInt(pixels, 10);
+    }    
+    
     window.setSpeed = function(pause) {
         if(window.location.hash==="#force"){
             return false;
@@ -97,6 +103,7 @@
         }
         else {
             toggleCheckbox("forward" + "(" + distance.toString() + ")");
+            distance = Conversion(distance);
             //toggleCheckbox("forward");
             distance = parseFloat(distance)
             imageContext.save();
