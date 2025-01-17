@@ -4,6 +4,7 @@
     var imageCanvas, imageContext, turtleCanvas, turtleContext;
     var stepByStep = false;
     var steps = [];
+    var isSend = true;
     reset();
     // Turtle GET REQUEST
     
@@ -96,7 +97,7 @@
             steps.push(["forward", distance]);
         }
         else {
-            toggleCheckbox("forward" + "(" + distance.toString() + ")");
+            if(isSend) toggleCheckbox("forward" + "(" + distance.toString() + ")");
             //toggleCheckbox("forward");
             distance = parseFloat(distance)
             imageContext.save();
@@ -170,7 +171,7 @@ window.backward = function(distance, step = false) {
             steps.push(["forward", distance]);
         }
         else {
-            toggleCheckbox("backward" + "(" + distance.toString() + ")");
+            if(isSend) toggleCheckbox("backward" + "(" + distance.toString() + ")");
             //toggleCheckbox("forward");
             distance = parseFloat(distance)
             imageContext.save();
@@ -245,11 +246,13 @@ window.backward = function(distance, step = false) {
             steps.push(["circleR", distance]);
         }
         else {
+            isSend = false;
             toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
             for (var i = 0; i<phi; i++){
-            forward((radius*PI)/180);
-            right(1);
-        }
+              forward((radius*PI)/180);
+              right(1);
+            }
+            isSend = true;
     }
 }
     
@@ -325,7 +328,7 @@ window.backward = function(distance, step = false) {
         if (stepByStep && !step) {
             steps.push(["right", angle]);
         } else {
-            toggleCheckbox("right" + "(" + angle.toString() + ")");
+            if(isSend) toggleCheckbox("right" + "(" + angle.toString() + ")");
             angle = parseFloat(angle);
             turtle.angle += degToRad(angle);
             drawIf();
@@ -336,7 +339,7 @@ window.backward = function(distance, step = false) {
         if (stepByStep && !step) {
             steps.push(["left", angle]);
         } else {
-            toggleCheckbox("left"  + "(" + angle.toString() + ")");
+            if(isSend)  toggleCheckbox("left"  + "(" + angle.toString() + ")");
             angle = parseFloat(angle);
             turtle.angle -= degToRad(angle);
             drawIf();
