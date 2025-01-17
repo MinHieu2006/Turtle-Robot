@@ -54,11 +54,7 @@
     
     
     /* ====================================  turtle API functions =====================================*/
-    function Conversion(centi)
-    {
-        var pixels = (96 * centi) / 2.54;
-        return parseInt(pixels, 10);
-    }    
+  
     
     window.setSpeed = function(pause) {
         if(window.location.hash==="#force"){
@@ -103,7 +99,6 @@
         }
         else {
             toggleCheckbox("forward" + "(" + distance.toString() + ")");
-            distance = Conversion(distance);
             //toggleCheckbox("forward");
             distance = parseFloat(distance)
             imageContext.save();
@@ -172,6 +167,83 @@
             drawIf();
         }
     }
+
+window.backward = function(distance, step = false) {
+        if (stepByStep && !step) {
+            steps.push(["forward", distance]);
+        }
+        else {
+            toggleCheckbox("forward" + "(" + distance.toString() + ")");
+            //toggleCheckbox("forward");
+            distance = parseFloat(distance)
+            imageContext.save();
+            centerCoords(imageContext);
+            imageContext.beginPath();
+            var maxX = imageContext.canvas.width / 2;
+            var minX = -imageContext.canvas.width / 2;
+            var maxY = imageContext.canvas.height / 2;
+            var minY = -imageContext.canvas.height / 2;
+            var x = turtle.pos.x;
+            var y = turtle.pos.y;
+            while (distance > 0) {
+                imageContext.moveTo(x, y);
+                var cosAngle = Math.cos(turtle.angle);
+                var sinAngle = Math.sin(turtle.angle)
+                var newX = x - sinAngle * distance;
+                var newY = y - cosAngle * distance;
+                function xWrap(cutBound, otherBound) {
+                    var distanceToEdge = Math.abs((cutBound - x) / sinAngle);
+                    var edgeY = cosAngle * distanceToEdge + y;
+                    imageContext.lineTo(cutBound, edgeY);
+                    distance -= distanceToEdge;
+                    x = otherBound;
+                    y = edgeY;
+                }
+                function yWrap(cutBound, otherBound) {
+                    var distanceToEdge = Math.abs((cutBound - y) / cosAngle);
+                    var edgeX = sinAngle * distanceToEdge + x;
+                    imageContext.lineTo(edgeX, cutBound);
+                    distance -= distanceToEdge;
+                    x = edgeX;
+                    y = otherBound;
+                }
+                function noWrap() {
+                    imageContext.lineTo(newX, newY);
+                    turtle.pos.x = newX;
+                    turtle.pos.y = newY;
+                    distance = 0;
+                }
+                // If wrap is on, trace a part segment of the path and wrap on boundary if necessary.
+                if (turtle.wrap) {
+                    if (insideCanvas(newX, newY, minX, maxX, minY, maxY)) {
+                        noWrap();
+                    }
+                    else if (point = intersect(x, y, newX, newY, maxX, maxY, maxX, minY))
+                        xWrap(maxX, minX);
+                    else if (point = intersect(x, y, newX, newY, minX, maxY, minX, minY))
+                        xWrap(minX, maxX);
+                    else if (point = intersect(x, y, newX, newY, minX, maxY, maxX, maxY))
+                        yWrap(maxY, minY);
+                    else if (point = intersect(x, y, newX, newY, minX, minY, maxX, minY))
+                        yWrap(minY, maxY);
+                    else
+                        // No wrapping to to, new turtle position is within the canvas.
+                        noWrap();
+                }
+                else {
+                    noWrap();
+                }
+            }
+    
+            if (turtle.penDown) {
+                imageContext.stroke();
+            }
+            imageContext.restore();
+            drawIf();
+        }
+    }
+
+    
 
     window.circleR = function(radius, phi, step = false) {
         if (stepByStep && !step) {
