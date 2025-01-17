@@ -173,7 +173,7 @@ window.backward = function(distance, step = false) {
             steps.push(["forward", distance]);
         }
         else {
-            toggleCheckbox("forward" + "(" + distance.toString() + ")");
+            toggleCheckbox("backward" + "(" + distance.toString() + ")");
             //toggleCheckbox("forward");
             distance = parseFloat(distance)
             imageContext.save();
@@ -251,6 +251,16 @@ window.backward = function(distance, step = false) {
         }
         else {
             toggleCheckbox("circleR" + "(" + radius.toString() + ";" + phi.toString() + ")");
+            while(phi>0){
+                turtle.penup();
+                turtle.forward(radius-1);                
+                turtle.pendown();
+                turtle.forward(1);
+                turtle.penup();
+                turtle.backward(radius);
+                turtle.right(1);
+                phi--;
+            }
         }
     }
     
