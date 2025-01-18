@@ -100,7 +100,7 @@
         else {
             toggleCheckbox("forward" + "(" + distance.toString() + ")");
             //toggleCheckbox("forward");
-            distance = parseFloat(distance)
+            distance = parseFloat(distance*10);
             imageContext.save();
             centerCoords(imageContext);
             imageContext.beginPath();
@@ -175,7 +175,7 @@ window.backward = function(distance, step = false) {
         else {
             toggleCheckbox("backward" + "(" + distance.toString() + ")");
             //toggleCheckbox("forward");
-            distance = parseFloat(distance)
+            distance = parseFloat(distance*10);
             imageContext.save();
             centerCoords(imageContext);
             imageContext.beginPath();
