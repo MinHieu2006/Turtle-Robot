@@ -258,6 +258,7 @@ window.backward = function(distance, step = false) {
     
 
     window.circleL = function(radius, phi, step = false) {
+        var PI = 3.1415926535897932384626433;
         if (stepByStep && !step) {
             steps.push(["circleL", distance]);
         }
